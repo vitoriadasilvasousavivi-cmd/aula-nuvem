@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AULAA DE NUVEM</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Meu site está na NUVEM </h1>
-    <p>Computação em nuvem é incrível!</p>
+
+    <h1>Lista de usuarios</h1>
+
+    <table border="=1">
+
+        <thead>
+            <th>
+           <th>ID</th>
+           <th>Nome</th>
+           <th>Email</th>
+           <th>foto</th>
+     </th>
+        </thead>
+        <tbody id="tabelaUsuarios"></tbody>
+    </table>
+
+    <script>
+        async function carregandousuarios() {
+            const resposta = await fetch("/usuarios");
+            const usuarios = await resposta.json();
+
+            const tabela = document.getElementById("tabeladeusuarios");
+            table.innerHTML = "";
+
+            usuarios.forEach(usuario => {
+                tabela.innerHTML += `
+               <tr>
+                <td>${usuario.id}</td>
+                <td>${usuario.nome}</td>
+                <td>${usuario.email}</td>
+                <td>${usuario.foto ? `<img scr"/uploads/${usuarios.foto}"
+                    width="60">`: "Sem foto"}
+                    </td>
+            </tr>
+                `;
+              });
+        }
+    </script>
 </body>
 </html>
